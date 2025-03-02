@@ -4,6 +4,7 @@
     using ExampleFramework.ImGuiDemo;
     using ExampleFramework.ImGuizmoDemo;
     using ExampleFramework.ImNodesDemo;
+    using ExampleFramework.ImNodesZoomDemo;
     using ExampleFramework.ImPlotDemo;
     using Hexa.NET.ImGui;
     using Hexa.NET.ImGui.Backends;
@@ -21,7 +22,8 @@
         private ImGuiManager imGuiManager;
         private ImGuiDemo imGuiDemo;
         private ImGuizmoDemo imGuizmoDemo;
-        private ImNodesDemo imNodesDemo;
+        //private ImNodesDemo imNodesDemo;
+        private ImNodesZoomDemo imNodesZoomDemo;
         private ImPlotDemo imPlotDemo;
 
         public override void InitGraphics()
@@ -43,7 +45,8 @@
 
             imGuiDemo = new();
             imGuizmoDemo = new();
-            imNodesDemo = new();
+            //imNodesDemo = new();
+            imNodesZoomDemo = new();
             imPlotDemo = new();
         }
 
@@ -65,7 +68,8 @@
 
             ImGui.ShowDemoWindow();
             imGuizmoDemo.Draw();
-            imNodesDemo.Draw();
+            //imNodesDemo.Draw();
+            imNodesZoomDemo.Draw();
             imPlotDemo.Draw();
 
             d3d11Manager.Clear(default);

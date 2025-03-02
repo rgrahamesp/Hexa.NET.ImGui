@@ -72,6 +72,24 @@
 		<None Update="cimgui\typedefs_dict.json">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
+		<None Update="cimnodeszoom\cimgui.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimnodeszoom\cimnodes.h">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimnodeszoom\definitions.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimnodeszoom\generator.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimnodeszoom\structs_and_enums.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="cimnodeszoom\typedefs_dict.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 		<None Update="cimnodes\cimgui.h">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>

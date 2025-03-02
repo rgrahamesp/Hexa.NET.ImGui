@@ -17,6 +17,7 @@ namespace Generator
 
         private const string CImGuizmoConfig = "cimguizmo/generator.json";
         private const string CImNodesConfig = "cimnodes/generator.json";
+        private const string CImNodesZoomConfig = "cimnodeszoom/generator.json";
         private const string CImPlotConfig = "cimplot/generator.json";
 
         private const string ImGuiNodeEditorConfig = "imgui-node-editor/generator.json";
@@ -24,6 +25,7 @@ namespace Generator
         private const string CImGuiHeader = "cimgui/cimgui.h";
         private const string CImGuizmoHeader = "cimguizmo/cimguizmo.h";
         private const string CImNodesHeader = "cimnodes/cimnodes.h";
+        private const string CImNodesZoomHeader = "cimnodeszoom/cimnodes.h";
         private const string CImPlotHeader = "cimplot/cimplot.h";
 
         private const string ImGuiNodeEditorHeader = "imgui-node-editor/imgui_node_editor.h";
@@ -32,6 +34,7 @@ namespace Generator
 
         private const string ImGuizmoOutputPath = "../../../../Hexa.NET.ImGuizmo/Generated";
         private const string ImNodesOutputPath = "../../../../Hexa.NET.ImNodes/Generated";
+        private const string ImNodesZoomOutputPath = "../../../../Hexa.NET.ImNodesZoom/Generated";
         private const string ImPlotOutputPath = "../../../../Hexa.NET.ImPlot/Generated";
 
         private const string ImGuiNodeEditorOutputPath = "../../../../Hexa.NET.ImGuiNodeEditor/Generated";
@@ -54,45 +57,44 @@ namespace Generator
 
             Directory.CreateDirectory("./patches");
 
-#if !NodeEditorOnly
+//#if !NodeEditorOnly
 
-#if !BackendsOnly
+//#if !BackendsOnly
             // don't worry about "NoInternals" internals will be generated in a substep (post-patch) when generating. see ImGuiPostPatch.cs
             Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
 
-            Generate([CImGuizmoHeader], CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
-            Generate([CImPlotHeader], CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
-            Generate([CImNodesHeader], CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
-#else
-            Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
-#endif
+            //Generate([CImGuizmoHeader], CImGuizmoConfig, ImGuizmoOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+            //Generate([CImPlotHeader], CImPlotConfig, ImPlotOutputPath, metadata, out var imPlotMetadata, InternalsGenerationType.BothOrDontCare);
+            //Generate([CImNodesHeader], CImNodesConfig, ImNodesOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+            Generate([CImNodesZoomHeader], CImNodesZoomConfig, ImNodesZoomOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+//#else
+//            Generate([CImGuiHeader], CImGuiConfig, ImGuiOutputPath, null, out var metadata, InternalsGenerationType.NoInternals);
+//#endif
 
-            string[] backends = ["OpenGL3", "OpenGL2", "D3D9", "D3D10", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal", "Android"];
+//            string[] backends = ["OpenGL3", "OpenGL2", "D3D9", "D3D10", "D3D11", "D3D12", "Vulkan", "Win32", "OSX", "Metal", "Android"];
 
-            metadata.CppDefinedFunctions.Clear();
+//            metadata.CppDefinedFunctions.Clear();
 
-            CsCodeGeneratorMetadata? metadataBackend = new()
-            {
-                FunctionTable = new() { Entries = [new(0, "igSetCurrentContext"), new(1, "igGetCurrentContext")] },
-                Settings = new(),
-                WrappedPointers = metadata.WrappedPointers.ToDictionary()
-            };
+//            CsCodeGeneratorMetadata? metadataBackend = new()
+//            {
+//                FunctionTable = new() { Entries = [new(0, "igSetCurrentContext"), new(1, "igGetCurrentContext")] },
+//                Settings = new(),
+//                WrappedPointers = metadata.WrappedPointers.ToDictionary()
+//            };
 
-            foreach (string lib in backends)
-            {
-                GenerateBackend(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsConfig, ImGuiBackendsOutputPath, metadataBackend, out var libMetadata, lib);
-                metadataBackend ??= libMetadata;
-            }
+//            foreach (string lib in backends)
+//            {
+//                GenerateBackend(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsConfig, ImGuiBackendsOutputPath, metadataBackend, out var libMetadata, lib);
+//                metadataBackend ??= libMetadata;
+//            }
 
-            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
-            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL3Config, ImGuiBackendsSDL3OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
-            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+//            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL2Config, ImGuiBackendsSDL2OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+//            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsSDL3Config, ImGuiBackendsSDL3OutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
+//            Generate(["backends/cimgui.h", CImGuiBackendsHeader], CImGuiBackendsGLFWConfig, ImGuiBackendsGLFWOutputPath, metadata, out _, InternalsGenerationType.BothOrDontCare);
 
-#else
-
-            GenerateNodeEditor(ImGuiNodeEditorHeader, ImGuiNodeEditorConfig, ImGuiNodeEditorOutputPath, null, out _);
-
-#endif
+//#else
+//            GenerateNodeEditor(ImGuiNodeEditorHeader, ImGuiNodeEditorConfig, ImGuiNodeEditorOutputPath, null, out _);
+//#endif
 
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.WriteLine("All Done!");

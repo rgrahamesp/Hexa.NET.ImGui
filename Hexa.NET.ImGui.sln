@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexa.NET.ImGui.Backends.SDL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleSDL3OpenGL3", "ExampleSDL3OpenGL3\ExampleSDL3OpenGL3.csproj", "{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hexa.NET.ImNodesZoom", "Hexa.NET.ImNodesZoom\Hexa.NET.ImNodesZoom.csproj", "{03494147-EC04-5CA9-96E4-1620FC96997D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -180,6 +182,12 @@ Global
 		{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}.NodeEditor|Any CPU.Build.0 = Debug|Any CPU
 		{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F00254CF-9D0A-40C1-9B5B-E9A778F194DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03494147-EC04-5CA9-96E4-1620FC96997D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03494147-EC04-5CA9-96E4-1620FC96997D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03494147-EC04-5CA9-96E4-1620FC96997D}.NodeEditor|Any CPU.ActiveCfg = Debug|Any CPU
+		{03494147-EC04-5CA9-96E4-1620FC96997D}.NodeEditor|Any CPU.Build.0 = Debug|Any CPU
+		{03494147-EC04-5CA9-96E4-1620FC96997D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03494147-EC04-5CA9-96E4-1620FC96997D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
